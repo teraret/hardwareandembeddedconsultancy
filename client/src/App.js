@@ -1,12 +1,8 @@
 import React, { Component } from "react";
-import AppNav from "./AppNav";
 import { Row } from "reactstrap";
-
 import background from "./images/pexels-valentine-tanasovich-2588757.jpg";
-import reactLogo from "./images/logo.svg";
 import { CLIENT_VERSION, REACT_VERSION, SERVER_URL } from "./config";
 import "whatwg-fetch";
-import Footer from "./Footer";
 
 class App extends Component {
   state = {
@@ -33,31 +29,23 @@ class App extends Component {
     const { serverInfo, clientInfo, collapse } = this.state;
 
     return [
-      <AppNav
-        serverInfo={serverInfo}
-        clientInfo={clientInfo}
-        collapse={collapse}
-        toggle={this.toggle}
-        key={0}
-      />,
       <div className="grails-logo-container" key={1}>
         <img className="grails-logo" src={background} alt="Grails" />
-        {/* <span className="plus-logo">+</span>
-                <img className="hero-logo" src={reactLogo} alt="React"/> */}
       </div>,
 
       <Row key={2}>
         <div id="content">
           <section className="row colset-2-its">
-            <h1 style={{ textAlign: "center" }}>Welcome to Grails</h1>
+            <h1 style={{ textAlign: "center" }}>
+              Welcome to Hardware and Embedded Consultancy
+            </h1>
             <br />
             <p>
-              Congratulations, you have successfully started your Grails & React
-              application! While in development mode, changes will be loaded
-              automatically when you edit your React app, without even
-              refreshing the page. Below is a list of controllers that are
-              currently deployed in this application, click on each to execute
-              its default action:
+              Hardware and embedded consultancy by Teraret is Computer Hardware
+              Repair and Reseller Based In Banglore and Chennai. We are
+              Specialised in Computer Assembly, Server Assembly, Internet
+              Network Setup. We also Buy ,Rent and Sell
+              Laptops,Desktops,Projectors and Servers
             </p>
 
             <div id="controllers" role="navigation">
@@ -79,7 +67,6 @@ class App extends Component {
           </section>
         </div>
       </Row>,
-      <Footer key={3} />,
     ];
   }
 }

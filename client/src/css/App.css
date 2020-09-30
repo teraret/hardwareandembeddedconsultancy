@@ -4,12 +4,10 @@
   font-size: 1.2em;
 }
 
-
 .grails-icon img {
   height: 27px;
   background-image: url("../images/grails-cupsonly-logo-white.svg");
 }
-
 
 a {
   color: #db4800;
@@ -18,9 +16,8 @@ a {
 
 a:hover {
   color: #db4800;
-  text-decoration: none
+  text-decoration: none;
 }
-
 
 #content section h1 {
   font-size: 34px;
@@ -49,11 +46,10 @@ a:hover {
 }
 
 .grails-logo-container {
-  background:#7c7c7c no-repeat 50% 30%;
   margin-bottom: 20px;
   color: white;
-  height:300px;
-  text-align:center;
+  height: 300px;
+  text-align: center;
 }
 
 /*img.grails-logo {*/
@@ -67,11 +63,12 @@ a:hover {
 }
 
 .nav-link {
-  padding: .5rem;
+  padding: 0.5rem;
   border-radius: 3px;
 }
 
-.nav-link:hover, .nav-link:active {
+.nav-link:hover,
+.nav-link:active {
   background-color: #db4800;
 }
 
@@ -93,17 +90,17 @@ a:hover {
 }
 
 .navbar a.dropdown-toggle {
-  color:  white!important;
+  color: white !important;
   text-shadow: none;
 }
 
 .navbar .open a.dropdown-toggle {
-  color: black!important;
+  color: black !important;
   text-shadow: none;
 }
 
 .navbar .navbar-brand {
-  color:  white!important;
+  color: white !important;
   text-shadow: none;
 }
 
@@ -115,14 +112,13 @@ a:hover {
 }
 
 @media (min-width: 768px) {
-  .navbar-nav>li>a {
+  .navbar-nav > li > a {
     padding-top: 25px;
     padding-bottom: 25px;
   }
 }
 
 @media (max-width: 767px) {
-
   .hero-logo {
     display: none;
   }
@@ -132,10 +128,10 @@ a:hover {
   }
 
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
-    color: white!important;
+    color: white !important;
   }
 
   .navbar-toggle .icon-bar {
-    background-color: white!important;
+    background-color: white !important;
   }
 }

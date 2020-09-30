@@ -41,7 +41,7 @@ const AppNav = ({ serverInfo, clientInfo, collapse, toggle }) => {
       className="navbar-static-top"
     >
       <NavbarBrand>
-        <img src={grailsLogo} alt="Grails" width="200" />
+        <img src={grailsLogo} alt="Hardware and Embedded Consultancy" width="240" />
       </NavbarBrand>
       <NavbarToggler onClick={toggle} />
 

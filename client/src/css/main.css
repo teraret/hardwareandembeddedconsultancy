@@ -1,10 +1,18 @@
 /* FONT STACK */
 body,
-input, select, textarea {
-  font-family: "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+input,
+select,
+textarea {
+  font-family: "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light",
+    "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   line-height: 1.1;
 }
 
@@ -13,7 +21,13 @@ h1, h2, h3, h4, h5, h6 {
 html {
   background-color: #ddd;
   background-image: -moz-linear-gradient(center top, #aaa, #ddd);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #aaa), color-stop(1, #ddd));
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0, #aaa),
+    color-stop(1, #ddd)
+  );
   background-image: linear-gradient(to bottom, #aaa, #ddd);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorStr = '#aaaaaa', EndColorStr = '#dddddd');
   background-repeat: no-repeat;
@@ -33,7 +47,7 @@ html * {
 }
 
 body {
-  background-color: #F5F5F5;
+  background-color: #f5f5f5;
   color: #333333;
   overflow-x: hidden; /* prevents box-shadow causing a horizontal scrollbar in firefox when viewport < 960px wide */
   -moz-box-shadow: 0 0 0.3em #4d85bd;
@@ -45,11 +59,14 @@ body {
   background-color: #feb672;
 }
 
-a:hover, a:active {
+a:hover,
+a:active {
   outline: none; /* prevents outline in webkit on active links but retains it for tab focus */
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-weight: normal;
   font-size: 1.25em;
   margin: 0.8em 0 0.3em 0;
@@ -74,7 +91,7 @@ img {
 }
 
 .content h1 {
-  border-bottom: 1px solid #CCCCCC;
+  border-bottom: 1px solid #cccccc;
   margin: 0.8em 1em 0.3em;
   padding: 0 0.25em;
 }
@@ -158,24 +175,29 @@ img {
   border-radius: 0;
 }
 
-.nav a:active, .nav a:visited {
+.nav a:active,
+.nav a:visited {
   color: #666666;
 }
 
-.nav a:focus, .nav a:hover {
-  background-color: #999999;
+.nav a:focus,
+.nav a:hover {
+  background-color: #f5e356;
   color: #ffffff;
   outline: none;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
 }
 
-.no-borderradius .nav a:focus, .no-borderradius .nav a:hover {
+.no-borderradius .nav a:focus,
+.no-borderradius .nav a:hover {
   background-color: transparent;
   color: #444444;
   text-decoration: underline;
 }
 
-.nav a.home, .nav a.list, .nav a.create {
+.nav a.home,
+.nav a.list,
+.nav a.create {
   background-position: 0.7em center;
   background-repeat: no-repeat;
   text-indent: 25px;
@@ -240,7 +262,9 @@ label {
   margin: 0 0.25em 0 0;
 }
 
-input, select, textarea {
+input,
+select,
+textarea {
   background-color: #fcfcfc;
   border: 1px solid #cccccc;
   font-size: 1em;
@@ -262,13 +286,16 @@ textarea {
   vertical-align: top;
 }
 
-input[type=checkbox], input[type=radio] {
+input[type="checkbox"],
+input[type="radio"] {
   background-color: transparent;
   border: 0;
   padding: 0;
 }
 
-input:focus, select:focus, textarea:focus {
+input:focus,
+select:focus,
+textarea:focus {
   background-color: #ffffff;
   border: 1px solid #eeeeee;
   outline: 0;
@@ -300,7 +327,7 @@ ul.one-to-many li.add {
 
 fieldset.embedded {
   background-color: transparent;
-  border: 1px solid #CCCCCC;
+  border: 1px solid #cccccc;
   margin-left: 0;
   margin-right: 0;
   padding-left: 0;
@@ -349,24 +376,30 @@ fieldset.embedded legend {
 
 .errors li {
   list-style: none;
-  background: transparent url(../images/skin/exclamation.png) 0.5em 50% no-repeat;
+  background: transparent url(../images/skin/exclamation.png) 0.5em 50%
+    no-repeat;
   text-indent: 2.2em;
 }
 
 .message {
-  background: transparent url(../images/skin/information.png) 0.5em 50% no-repeat;
+  background: transparent url(../images/skin/information.png) 0.5em 50%
+    no-repeat;
   text-indent: 2.2em;
 }
 
 /* form fields with errors */
 
-.error input, .error select, .error textarea {
+.error input,
+.error select,
+.error textarea {
   background: #fff3f3;
   border-color: #ffaaaa;
   color: #cc0000;
 }
 
-.error input:focus, .error select:focus, .error textarea:focus {
+.error input:focus,
+.error select:focus,
+.error textarea:focus {
   -moz-box-shadow: 0 0 0.5em #ffaaaa;
   -webkit-box-shadow: 0 0 0.5em #ffaaaa;
   box-shadow: 0 0 0.5em #ffaaaa;
@@ -374,13 +407,17 @@ fieldset.embedded legend {
 
 /* same effects for browsers that support HTML5 client-side validation (these have to be specified separately or IE will ignore the entire rule) */
 
-input:invalid, select:invalid, textarea:invalid {
+input:invalid,
+select:invalid,
+textarea:invalid {
   background: #fff3f3;
   border-color: #ffaaaa;
   color: #cc0000;
 }
 
-input:invalid:focus, select:invalid:focus, textarea:invalid:focus {
+input:invalid:focus,
+select:invalid:focus,
+textarea:invalid:focus {
   -moz-box-shadow: 0 0 0.5em #ffaaaa;
   -webkit-box-shadow: 0 0 0.5em #ffaaaa;
   box-shadow: 0 0 0.5em #ffaaaa;
@@ -389,7 +426,7 @@ input:invalid:focus, select:invalid:focus, textarea:invalid:focus {
 /* TABLES */
 
 table {
-  border-top: 1px solid #DFDFDF;
+  border-top: 1px solid #dfdfdf;
   border-collapse: collapse;
   width: 100%;
   margin-bottom: 1em;
@@ -399,15 +436,18 @@ tr {
   border: 0;
 }
 
-tr>td:first-child, tr>th:first-child {
+tr > td:first-child,
+tr > th:first-child {
   padding-left: 1.25em;
 }
 
-tr>td:last-child, tr>th:last-child {
+tr > td:last-child,
+tr > th:last-child {
   padding-right: 1.25em;
 }
 
-td, th {
+td,
+th {
   line-height: 1.5em;
   padding: 0.5em 0.6em;
   text-align: left;
@@ -417,7 +457,13 @@ td, th {
 th {
   background-color: #efefef;
   background-image: -moz-linear-gradient(top, #ffffff, #eaeaea);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ffffff), color-stop(1, #eaeaea));
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0, #ffffff),
+    color-stop(1, #eaeaea)
+  );
   filter: progid:DXImageTransform.Microsoft.gradient(startColorStr = '#ffffff', EndColorStr = '#eaeaea');
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#ffffff', EndColorStr='#eaeaea')";
   color: #666666;
@@ -435,11 +481,13 @@ th a {
   text-decoration: none;
 }
 
-th a:link, th a:visited {
+th a:link,
+th a:visited {
   color: #666666;
 }
 
-th a:hover, th a:focus {
+th a:hover,
+th a:focus {
   color: #333333;
 }
 
@@ -465,7 +513,8 @@ th.desc a {
   background: #ffffff;
 }
 
-th:hover, tr:hover {
+th:hover,
+tr:hover {
   background: #f5f5f5;
 }
 
@@ -476,10 +525,10 @@ th:hover, tr:hover {
   margin: 0.8em 1em 0.3em;
   padding: 0.3em 0.2em;
   text-align: center;
-  -moz-box-shadow: 0 0 3px 1px #AAAAAA;
-  -webkit-box-shadow: 0 0 3px 1px #AAAAAA;
-  box-shadow: 0 0 3px 1px #AAAAAA;
-  background-color: #EFEFEF;
+  -moz-box-shadow: 0 0 3px 1px #aaaaaa;
+  -webkit-box-shadow: 0 0 3px 1px #aaaaaa;
+  box-shadow: 0 0 3px 1px #aaaaaa;
+  background-color: #efefef;
 }
 
 .pagination a,
@@ -494,15 +543,17 @@ th:hover, tr:hover {
   border-radius: 0.3em;
 }
 
-.pagination a:hover, .pagination a:focus,
+.pagination a:hover,
+.pagination a:focus,
 .pagination .currentStep {
-  background-color: #999999;
+  background-color: #f5e356;
   color: #ffffff;
   outline: none;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
 }
 
-.no-borderradius .pagination a:hover, .no-borderradius .pagination a:focus,
+.no-borderradius .pagination a:hover,
+.no-borderradius .pagination a:focus,
 .no-borderradius .pagination .currentStep {
   background-color: transparent;
   color: #444444;
@@ -539,9 +590,11 @@ th:hover, tr:hover {
   border-radius: 0.3em;
 }
 
-.buttons input:hover, .buttons input:focus,
-.buttons a:hover, .buttons a:focus {
-  background-color: #999999;
+.buttons input:hover,
+.buttons input:focus,
+.buttons a:hover,
+.buttons a:focus {
+  background-color: #f5e356;
   color: #ffffff;
   outline: none;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
@@ -550,14 +603,18 @@ th:hover, tr:hover {
   box-shadow: none;
 }
 
-.no-borderradius .buttons input:hover, .no-borderradius .buttons input:focus,
-.no-borderradius .buttons a:hover, .no-borderradius .buttons a:focus {
+.no-borderradius .buttons input:hover,
+.no-borderradius .buttons input:focus,
+.no-borderradius .buttons a:hover,
+.no-borderradius .buttons a:focus {
   background-color: transparent;
   color: #444444;
   text-decoration: underline;
 }
 
-.buttons .delete, .buttons .edit, .buttons .save {
+.buttons .delete,
+.buttons .edit,
+.buttons .save {
   background-position: 0.7em center;
   background-repeat: no-repeat;
   text-indent: 25px;
@@ -581,14 +638,12 @@ a.skip {
 }
 
 .grails-logo-container {
-  background: #7c7c7c no-repeat 50% 30%;
   margin-bottom: 20px;
   color: white;
-  height:300px;
-  text-align:center;
+  text-align: center;
 }
 
 img.grails-logo {
-  height:340px;
-  margin-top:-10px;
+  width: 100%;
+  margin-top: -10px;
 }
