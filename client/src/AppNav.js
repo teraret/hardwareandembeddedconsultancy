@@ -35,7 +35,7 @@ const AppNav = ({ serverInfo, clientInfo, collapse, toggle }) => {
 
   return (
     <Navbar
-      style={{ backgroundColor: "#424649", borderRadius: 0 }}
+      style={{ backgroundColor: "#4d85bd", borderRadius: 0 }}
       dark
       expand="lg"
       className="navbar-static-top"
