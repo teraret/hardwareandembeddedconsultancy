@@ -1,0 +1,8 @@
+import crm.Customer
+
+model {
+	Iterable<Customer> customerList
+}
+
+json tmpl.customer(customerList ?: [])
+
