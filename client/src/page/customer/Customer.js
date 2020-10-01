@@ -91,6 +91,16 @@ function Customer() {
   };
 
   const handleChangePage = (event, newPage) => {
+    dispatch(
+      fetchCustomer(
+        null,
+        customerdata.sort,
+        customerdata.order,
+        rowsPerPage,
+        newPage * rowsPerPage
+      )
+    );
+
     setPage(newPage);
   };
 
@@ -119,7 +129,7 @@ function Customer() {
   ) : (
     <div>
       <Grid item sm={12} md={12} className={classes.content}>
-        {/* Page Number {rowsPerPage} */}
+        {/* Page Number {page} */}
         <TablePagination
           rowsPerPageOptions={[10, 25]}
           component="div"
