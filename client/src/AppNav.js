@@ -22,17 +22,7 @@ const NavDropdownItem = (props) => {
   );
 };
 
-const AppNav = ({ serverInfo, clientInfo, collapse, toggle }) => {
-  const {
-    environment,
-    appprofile,
-    appversion,
-    grailsversion,
-    reloadingagentenabled,
-    artefacts,
-    plugins,
-  } = serverInfo;
-
+const AppNav = ({ collapse, toggle }) => {
   return (
     <Navbar
       style={{ backgroundColor: "#4d85bd", borderRadius: 0 }}
@@ -40,8 +30,12 @@ const AppNav = ({ serverInfo, clientInfo, collapse, toggle }) => {
       expand="lg"
       className="navbar-static-top"
     >
-      <NavbarBrand>
-        <img src={grailsLogo} alt="Hardware and Embedded Consultancy" width="240" />
+      <NavbarBrand href="/">
+        <img
+          src={grailsLogo}
+          alt="Hardware and Embedded Consultancy"
+          width="240"
+        />
       </NavbarBrand>
       <NavbarToggler onClick={toggle} />
 
@@ -49,67 +43,22 @@ const AppNav = ({ serverInfo, clientInfo, collapse, toggle }) => {
         <Nav className="ml-auto nav" navbar>
           <UncontrolledDropdown nav inNavbar>
             <DropdownToggle caret nav>
-              Application Status
+              Add +
             </DropdownToggle>
             <DropdownMenu right tag="ul">
-              <NavDropdownItem>Environment: {environment}</NavDropdownItem>
-              <NavDropdownItem>
-                App profile:{" "}
-                {appprofile
-                  ? appprofile.replace("org.grails.profiles:", "")
-                  : null}
-              </NavDropdownItem>
-              <NavDropdownItem>Server version: {appversion}</NavDropdownItem>
-              <NavDropdownItem>
-                Client version: {clientInfo ? clientInfo.version : null}
-              </NavDropdownItem>
-              <DropdownItem tag="li" divider></DropdownItem>
-              <NavDropdownItem>Grails version: {grailsversion}</NavDropdownItem>
-              <NavDropdownItem>
-                React version:{" "}
-                {clientInfo ? clientInfo.react.replace("^", "") : null}
-              </NavDropdownItem>
-
-              <DropdownItem tag="li" divider></DropdownItem>
-              <NavDropdownItem>
-                Reloading active: {reloadingagentenabled ? "true" : "false"}
-              </NavDropdownItem>
+              <NavDropdownItem>Customer</NavDropdownItem>
+              <NavDropdownItem>Category</NavDropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
-
           <UncontrolledDropdown nav inNavbar>
             <DropdownToggle caret nav>
-              Artefacts
+              List
             </DropdownToggle>
             <DropdownMenu right tag="ul">
-              <NavDropdownItem>
-                Controllers: {artefacts ? artefacts.controllers : 0}
-              </NavDropdownItem>
-              <NavDropdownItem>
-                Domains: {artefacts ? artefacts.domains : 0}
-              </NavDropdownItem>
-              <NavDropdownItem>
-                Services: {artefacts ? artefacts.services : 0}
-              </NavDropdownItem>
+              <DropdownItem tag="li">
+                <NavLink href="/customer">Customer</NavLink>
+              </DropdownItem>
             </DropdownMenu>
-          </UncontrolledDropdown>
-
-          <UncontrolledDropdown nav inNavbar>
-            <DropdownToggle caret nav>
-              Installed Plugins
-            </DropdownToggle>
-
-            {plugins ? (
-              <DropdownMenu right tag="ul">
-                {plugins.map((plugin) => {
-                  return (
-                    <NavDropdownItem key={plugin.name}>
-                      {plugin.name} - {plugin.version}
-                    </NavDropdownItem>
-                  );
-                })}
-              </DropdownMenu>
-            ) : null}
           </UncontrolledDropdown>
         </Nav>
       </Collapse>

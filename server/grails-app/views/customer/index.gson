@@ -2,7 +2,15 @@ import crm.Customer
 
 model {
 	Iterable<Customer> customerList
+	Long customerCount
+	Long customerPage
+	Long customerPageCount
 }
 
-json tmpl.customer(customerList ?: [])
+json{
+customer tmpl.customer(customerList ?: [])
+count customerCount
+page customerPage
+totalpages customerPageCount
+}
 

@@ -1,61 +1,326 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import React, { useEffect } from "react";
+import Grid from "@material-ui/core/Grid";
+import { makeStyles, withStyles } from "@material-ui/core";
+import { fetchCustomer } from "./../../redux/index";
+import { useSelector, useDispatch } from "react-redux";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import TableSortLabel from "@material-ui/core/TableSortLabel";
+import EditIcon from "@material-ui/icons/Edit";
+import IconButton from "@material-ui/core/IconButton";
+import TableContainer from "@material-ui/core/TableContainer";
+import TablePagination from "@material-ui/core/TablePagination";
 
-const useStyles = makeStyles({
-  table: {
-    minWidth: 650,
+import Paper from "@material-ui/core/Paper";
+import { Link } from "react-router-dom";
+import { LinearProgress } from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    "& > * + * .MuiTextField-root ": {
+      margin: theme.spacing(1),
+      marginBottom: 12,
+
+      [theme.breakpoints.down("sm")]: {
+        width: "100%",
+        display: "Center",
+      },
+      [theme.breakpoints.up("md")]: {
+        width: "100%",
+        justify: "center",
+      },
+      [theme.breakpoints.up("lg")]: {
+        width: 305,
+        display: "Center",
+      },
+    },
+    display: "flex",
   },
-});
+  title: {
+    fontSize: 18,
+  },
+  table: {
+    minWidth: 700,
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(1, 0),
+  },
+}));
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
+const StyledTableCell = withStyles((theme) => ({
+  head: {
+    backgroundColor: theme.palette.common.default,
+    color: theme.palette.common.black,
+    size: "small",
+  },
+  body: {
+    fontSize: 14,
+  },
+}))(TableCell);
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
-
+const StyledTableRow = withStyles((theme) => ({
+  root: {
+    "&:nth-of-type(odd)": {
+      backgroundColor: theme.palette.background.default,
+    },
+  },
+}))(TableRow);
 
 function Customer() {
   const classes = useStyles();
-  return (
-    <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.name}>
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+  const customerdata = useSelector((state) => state.customer);
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(customerdata.max);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(
+      fetchCustomer(null, customerdata.sort, customerdata.order, rowsPerPage, 0)
+    );
+  }, []);
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = (e) => {
+    setOpen(true);
+  };
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    dispatch(
+      fetchCustomer(
+        null,
+        customerdata.sort,
+        customerdata.order,
+        parseInt(event.target.value, 10),
+        0
+      )
+    );
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
+  return customerdata.loading ? (
+    <div className={classes.root}>
+      <LinearProgress />
+    </div>
+  ) : customerdata.error ? (
+    <h1>
+      {customerdata.error} {JSON.parse(localStorage.auth).data.access_token}
+    </h1>
+  ) : (
+    <div>
+      <Grid item sm={12} md={12} className={classes.content}>
+        {/* Page Number {rowsPerPage} */}
+        <TablePagination
+          rowsPerPageOptions={[10, 25]}
+          component="div"
+          count={customerdata.count}
+          rowsPerPage={rowsPerPage}
+          page={customerdata.page - 1}
+          onChangePage={handleChangePage}
+          onChangeRowsPerPage={handleChangeRowsPerPage}
+        />
+        <TableContainer component={Paper}>
+          <Table className={classes.table} aria-label="customized table">
+            <TableHead>
+              <TableRow>
+                <StyledTableCell key="id">
+                  <TableSortLabel
+                    direction={customerdata.order === "desc" ? "asc" : "desc"}
+                    onClick={() =>
+                      dispatch(
+                        fetchCustomer(
+                          null,
+                          "id",
+                          customerdata.order === "desc" ? "asc" : "desc",
+                          rowsPerPage,
+                          0
+                        )
+                      )
+                    }
+                  >
+                    customer ID
+                  </TableSortLabel>
+                </StyledTableCell>
+
+                <StyledTableCell key="name">
+                  <TableSortLabel
+                    direction={customerdata.order === "desc" ? "asc" : "desc"}
+                    onClick={() =>
+                      dispatch(
+                        fetchCustomer(
+                          null,
+                          "name",
+                          customerdata.order === "desc" ? "asc" : "desc",
+                          rowsPerPage,
+                          0
+                        )
+                      )
+                    }
+                  >
+                    Name
+                  </TableSortLabel>
+                </StyledTableCell>
+
+                <StyledTableCell key="email">
+                  <TableSortLabel
+                    direction={customerdata.order === "desc" ? "asc" : "desc"}
+                    onClick={() =>
+                      dispatch(
+                        fetchCustomer(
+                          null,
+                          "email",
+                          customerdata.order === "desc" ? "asc" : "desc",
+                          rowsPerPage,
+                          0
+                        )
+                      )
+                    }
+                  >
+                    E-mail
+                  </TableSortLabel>
+                </StyledTableCell>
+                <StyledTableCell key="mobile">
+                  <TableSortLabel
+                    direction={customerdata.order === "desc" ? "asc" : "desc"}
+                    onClick={() =>
+                      dispatch(
+                        fetchCustomer(
+                          null,
+                          "mobile",
+                          customerdata.order === "desc" ? "asc" : "desc",
+                          rowsPerPage,
+                          0
+                        )
+                      )
+                    }
+                  >
+                    Mobile
+                  </TableSortLabel>
+                </StyledTableCell>
+                <StyledTableCell key="address">
+                  <TableSortLabel
+                    direction={customerdata.order === "desc" ? "asc" : "desc"}
+                    onClick={() =>
+                      dispatch(
+                        fetchCustomer(
+                          null,
+                          "address",
+                          customerdata.order === "desc" ? "asc" : "desc",
+                          rowsPerPage,
+                          0
+                        )
+                      )
+                    }
+                  >
+                    Address
+                  </TableSortLabel>
+                </StyledTableCell>
+                <StyledTableCell key="dateCreated">
+                  <TableSortLabel
+                    direction={customerdata.order === "desc" ? "asc" : "desc"}
+                    onClick={() =>
+                      dispatch(
+                        fetchCustomer(
+                          null,
+                          "dateCreated",
+                          customerdata.order === "desc" ? "asc" : "desc",
+                          rowsPerPage,
+                          0
+                        )
+                      )
+                    }
+                  >
+                    Date Created
+                  </TableSortLabel>
+                </StyledTableCell>
+
+                <StyledTableCell key="lastUpdated">
+                  <TableSortLabel
+                    direction={customerdata.order === "desc" ? "asc" : "desc"}
+                    onClick={() =>
+                      dispatch(
+                        fetchCustomer(
+                          null,
+                          "lastUpdated",
+                          customerdata.order === "desc" ? "asc" : "desc",
+                          rowsPerPage,
+                          0
+                        )
+                      )
+                    }
+                  >
+                    Last Updated
+                  </TableSortLabel>
+                </StyledTableCell>
+
+                <StyledTableCell> Edit </StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {customerdata.customer.map((customer) => (
+                <StyledTableRow key={customer.id}>
+                  <StyledTableCell component="th" scope="row">
+                    {customer.id}
+                  </StyledTableCell>
+                  <StyledTableCell component="th" scope="row">
+                    <Link
+                      to={
+                        "/addressbook/customer/showcustomerdetail/" +
+                        customer.id
+                      }
+                    >
+                      {" "}
+                      {customer.name}{" "}
+                    </Link>
+                  </StyledTableCell>
+
+                  <StyledTableCell component="th" scope="row">
+                    {customer.email}
+                  </StyledTableCell>
+                  <StyledTableCell component="th" scope="row">
+                    {customer.mobile}
+                  </StyledTableCell>
+                  <StyledTableCell component="th" scope="row">
+                    {customer.address}
+                  </StyledTableCell>
+                  <StyledTableCell component="th" scope="row">
+                    {customer.dateCreated}
+                  </StyledTableCell>
+                  <StyledTableCell component="th" scope="row">
+                    {customer.lastUpdated}
+                  </StyledTableCell>
+
+                  <StyledTableCell component="th" scope="row">
+                    <IconButton color="secondary" aria-label="Edit customer">
+                      <EditIcon />
+                    </IconButton>
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[10, 25]}
+          component="div"
+          count={customerdata.count}
+          rowsPerPage={rowsPerPage}
+          page={customerdata.page - 1}
+          onChangePage={handleChangePage}
+          onChangeRowsPerPage={handleChangeRowsPerPage}
+        />
+      </Grid>
+    </div>
   );
 }
 

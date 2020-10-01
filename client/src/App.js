@@ -47,23 +47,6 @@ class App extends Component {
               Network Setup. We also Buy ,Rent and Sell
               Laptops,Desktops,Projectors and Servers
             </p>
-
-            <div id="controllers" role="navigation">
-              <h2>Available Controllers:</h2>
-              <ul>
-                {serverInfo.controllers
-                  ? serverInfo.controllers.map((controller) => {
-                      return (
-                        <li key={controller.name}>
-                          <a href={SERVER_URL + controller.logicalPropertyName}>
-                            {controller.name}
-                          </a>
-                        </li>
-                      );
-                    })
-                  : null}
-              </ul>
-            </div>
           </section>
         </div>
       </Row>,
