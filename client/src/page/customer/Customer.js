@@ -158,7 +158,7 @@ function Customer() {
                       )
                     }
                   >
-                    customer ID
+                    Customer ID
                   </TableSortLabel>
                 </StyledTableCell>
 

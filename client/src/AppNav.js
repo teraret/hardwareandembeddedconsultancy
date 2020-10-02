@@ -46,8 +46,9 @@ const AppNav = ({ collapse, toggle }) => {
               Add +
             </DropdownToggle>
             <DropdownMenu right tag="ul">
-              <NavDropdownItem>Customer</NavDropdownItem>
-              <NavDropdownItem>Category</NavDropdownItem>
+              <DropdownItem tag="li">
+                <NavLink href="/customer/create">Create Customer</NavLink>
+              </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
           <UncontrolledDropdown nav inNavbar>
