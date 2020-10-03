@@ -10,7 +10,7 @@ import PhoneAndroid from "@material-ui/icons/PhoneAndroid";
 import Email from "@material-ui/icons/Email";
 import Home from "@material-ui/icons/Home";
 import Contacts from "@material-ui/icons/Contacts";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form } from "formik";
 import Axios from "axios";
 import SERVER_URL from "../../config";
 import * as yup from "yup";
@@ -39,34 +39,47 @@ const useStyles = makeStyles((theme) => ({
 
 function CustomerForm() {
   const classes = useStyles();
+  const initialValues = {
+    name: "",
+    email: "",
+    mobile: "",
+    address: "",
+  };
   return (
     <div className={classes.root}>
       <Grid container direction="row" justify="center" alignItems="center">
         <Paper className={classes.paper}>
           <Formik
-            initialValues={{
-              name: "",
-              email: "",
-              mobile: "",
-              address: "",
-            }}
+            initialValues={initialValues}
             validationSchema={customerCreateSchema}
-            onSubmit={(values) => {
-              Axios({
-                method: "POST",
-                url: SERVER_URL + "/customer",
-                data: values,
-              });
-              console.log(values);
+            onSubmit={(values, { setSubmitting, setErrors, resetForm }) => {
+              setTimeout(() => {
+                Axios({
+                  method: "POST",
+                  url: SERVER_URL + "/customer",
+                  data: values,
+                });
+                setSubmitting(false);
+                resetForm(initialValues);
+                console.log(values);
+              }, 2000);
             }}
           >
-            {({ submitForm, isSubmitting, handleChange, touched, errors }) => (
+            {({
+              submitForm,
+              isSubmitting,
+              handleChange,
+              touched,
+              errors,
+              values,
+            }) => (
               <Form>
                 <Grid item xs={12}>
                   <TextField
                     id="outlined-full-width"
                     name="name"
                     label="Name"
+                    value={values.name || ""}
                     onChange={handleChange}
                     style={{ margin: 8 }}
                     placeholder="Name"
@@ -93,6 +106,7 @@ function CustomerForm() {
                     id="outlined-full-width"
                     name="email"
                     label="Email"
+                    value={values.email || ""}
                     onChange={handleChange}
                     style={{ margin: 8 }}
                     placeholder="E-Mail"
@@ -119,6 +133,7 @@ function CustomerForm() {
                     id="outlined-full-width"
                     label="Mobile"
                     name="mobile"
+                    value={values.mobile || ""}
                     onChange={handleChange}
                     style={{ margin: 8 }}
                     type="number"
@@ -146,6 +161,7 @@ function CustomerForm() {
                     id="outlined-full-width"
                     label="Address"
                     name="address"
+                    value={values.address || ""}
                     onChange={handleChange}
                     style={{ margin: 8 }}
                     placeholder="Address"
@@ -183,16 +199,6 @@ function CustomerForm() {
               </Form>
             )}
           </Formik>
-          <Grid item xs={12}>
-            <Button
-              variant="contained"
-              color="secondary"
-              // onClick={handleReset}
-              fullWidth
-            >
-              Reset
-            </Button>
-          </Grid>
         </Paper>
       </Grid>
     </div>
