@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import ReactDOM from "react-dom";
 import AppNav from "./AppNav";
 import App from "./App";
@@ -10,7 +10,6 @@ import "./css/grails.css";
 import "./css/main.css";
 import { Route, BrowserRouter, Switch } from "react-router-dom";
 import Footer from "./Footer";
-import Axios from "axios";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 
@@ -20,13 +19,6 @@ function Index() {
   const toggle = () => {
     setCollapse(!collapse);
   };
-
-  // useEffect(() => {
-  //   Axios.get(SERVER_URL + "/application")
-  //     .then((r) => r.json())
-  //     .then((json) => setServerInfo(json))
-  //     .catch((error) => console.error("Error connecting to server: " + error));
-  // });
 
   return (
     <BrowserRouter>

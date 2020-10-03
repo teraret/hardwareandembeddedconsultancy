@@ -4,15 +4,14 @@ import TextField from "@material-ui/core/TextField";
 import { Button, LinearProgress } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-
 import InputAdornment from "@material-ui/core/InputAdornment";
 import PhoneAndroid from "@material-ui/icons/PhoneAndroid";
 import Email from "@material-ui/icons/Email";
 import Home from "@material-ui/icons/Home";
 import Contacts from "@material-ui/icons/Contacts";
 import { Formik, Form } from "formik";
-import Axios from "axios";
-import SERVER_URL from "../../config";
+import { createCustomer } from "./../../redux/index";
+import {  useDispatch } from "react-redux";
 import * as yup from "yup";
 
 let customerCreateSchema = yup.object().shape({
@@ -39,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
 
 function CustomerForm() {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const initialValues = {
     name: "",
     email: "",
@@ -54,11 +54,7 @@ function CustomerForm() {
             validationSchema={customerCreateSchema}
             onSubmit={(values, { setSubmitting, setErrors, resetForm }) => {
               setTimeout(() => {
-                Axios({
-                  method: "POST",
-                  url: SERVER_URL + "/customer",
-                  data: values,
-                });
+                dispatch(createCustomer(values));
                 setSubmitting(false);
                 resetForm(initialValues);
                 console.log(values);

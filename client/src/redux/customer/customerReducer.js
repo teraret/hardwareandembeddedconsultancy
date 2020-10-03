@@ -1,7 +1,10 @@
 import {
   FETCH_CUSTOMER_REQUEST,
+  FETCH_CUSTOMERS_SUCCESS,
+  FETCH_CUSTOMERS_FAILURE,
   FETCH_CUSTOMER_SUCCESS,
   FETCH_CUSTOMER_FAILURE,
+  
 } from "./customerType";
 
 const initialState = {
@@ -21,7 +24,7 @@ const customerReducer = (state = initialState, action) => {
         ...state,
         loading: true,
       };
-    case FETCH_CUSTOMER_SUCCESS:
+    case FETCH_CUSTOMERS_SUCCESS:
       return {
         loading: false,
         sort: action.payloadsort,
@@ -35,12 +38,23 @@ const customerReducer = (state = initialState, action) => {
         error: "",
       };
 
-    case FETCH_CUSTOMER_FAILURE:
+    case FETCH_CUSTOMERS_FAILURE:
       return {
         ...state,
         loading: false,
         customer: action.payload,
       };
+    case FETCH_CUSTOMER_SUCCESS:
+      return{
+        loading:false,
+        customer:action.payload,
+      };
+      case FETCH_CUSTOMER_FAILURE:
+      return{
+        loading:false,
+        customer:action.payload,
+      };
+
     default:
       return state;
   }

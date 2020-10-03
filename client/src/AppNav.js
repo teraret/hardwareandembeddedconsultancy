@@ -11,16 +11,7 @@ import {
   NavLink,
   UncontrolledDropdown,
 } from "reactstrap";
-
 import grailsLogo from "./images/hadwareandembeddedconsultancy.svg";
-
-const NavDropdownItem = (props) => {
-  return (
-    <DropdownItem tag="li">
-      <NavLink>{props.children}</NavLink>
-    </DropdownItem>
-  );
-};
 
 const AppNav = ({ collapse, toggle }) => {
   return (
