@@ -78,10 +78,14 @@ function Customer() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    refresh();
+  }, []);
+
+  const refresh = () => {
     dispatch(
       fetchCustomer(null, customerdata.sort, customerdata.order, rowsPerPage, 0)
     );
-  }, []);
+  };
 
   const handleChangePage = (event, newPage) => {
     dispatch(
@@ -122,7 +126,7 @@ function Customer() {
   ) : (
     <div>
       <Grid item sm={12} md={12} className={classes.content}>
-        <CustomerForm />
+        <CustomerForm refresh={refresh} />
         <TablePagination
           rowsPerPageOptions={[10, 25]}
           component="div"

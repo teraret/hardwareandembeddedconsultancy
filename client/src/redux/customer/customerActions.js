@@ -33,31 +33,6 @@ const fetchCustomerFailure = (error) => {
   };
 };
 
-export const createCustomer = (value) => {
-  return (dispatch) => {
-    dispatch(fetchCustomersRequest);
-    Axios.post(SERVER_URL + "/customer", value)
-      .then((response) => {
-        console.log(response);
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.error("The Error Message is " + error.response.data.total);
-        let errorValue = "";
-        if (typeof error.response.data.total === "undefined") {
-          errorValue = "";
-          errorValue += error.response.data.message;
-        } else {
-          errorValue = "Errors Are ";
-          for (let i = 0; i < error.response.data.total; i++) {
-            errorValue += error.response.data._embedded.errors[i].message;
-          }
-        }
-        dispatch(fetchCustomerFailure(errorValue));
-      });
-  };
-};
-
 export const fetchCustomer = (authorization, sort, order, max, offset) => {
   return (dispatch) => {
     dispatch(fetchCustomersRequest);

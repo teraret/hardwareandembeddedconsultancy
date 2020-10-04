@@ -36,10 +36,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function CustomerForm() {
+function CustomerForm(props) {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const customerdata = useSelector((state) => state.customer);
+  const customerdata = useSelector((state) => state.customerCreate);
   const initialValues = {
     name: "",
     email: "",
@@ -61,6 +61,7 @@ function CustomerForm() {
                 resetForm(initialValues);
                 console.log(values);
               }, 2000);
+              props.refresh();
             }}
           >
             {({
@@ -194,6 +195,10 @@ function CustomerForm() {
             )}
           </Formik>
           {customerdata.error}
+          {/* {customerdata.show.id}
+          {customerdata.show.name}
+          {customerdata.show.email}
+          {customerdata.show.address} */}
         </Paper>
       </Grid>
     </div>
