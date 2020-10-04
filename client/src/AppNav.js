@@ -11,7 +11,7 @@ import {
   NavLink,
   UncontrolledDropdown,
 } from "reactstrap";
-import grailsLogo from "./images/hadwareandembeddedconsultancy.svg";
+import Logo from "./images/hadwareandembeddedconsultancy.svg";
 
 const AppNav = ({ collapse, toggle }) => {
   return (
@@ -22,26 +22,12 @@ const AppNav = ({ collapse, toggle }) => {
       className="navbar-static-top"
     >
       <NavbarBrand href="/">
-        <img
-          src={grailsLogo}
-          alt="Hardware and Embedded Consultancy"
-          width="240"
-        />
+        <img src={Logo} alt="Hardware and Embedded Consultancy" width="240" />
       </NavbarBrand>
       <NavbarToggler onClick={toggle} />
 
       <Collapse isOpen={collapse} navbar>
         <Nav className="ml-auto nav" navbar>
-          <UncontrolledDropdown nav inNavbar>
-            <DropdownToggle caret nav>
-              Add +
-            </DropdownToggle>
-            <DropdownMenu right tag="ul">
-              <DropdownItem tag="li">
-                <NavLink href="/customer/create">Create Customer</NavLink>
-              </DropdownItem>
-            </DropdownMenu>
-          </UncontrolledDropdown>
           <UncontrolledDropdown nav inNavbar>
             <DropdownToggle caret nav>
               List

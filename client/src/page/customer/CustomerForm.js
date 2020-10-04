@@ -11,7 +11,7 @@ import Home from "@material-ui/icons/Home";
 import Contacts from "@material-ui/icons/Contacts";
 import { Formik, Form } from "formik";
 import { createCustomer } from "./../../redux/index";
-import {  useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import * as yup from "yup";
 
 let customerCreateSchema = yup.object().shape({
@@ -39,12 +39,14 @@ const useStyles = makeStyles((theme) => ({
 function CustomerForm() {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const customerdata = useSelector((state) => state.customer);
   const initialValues = {
     name: "",
     email: "",
     mobile: "",
     address: "",
   };
+
   return (
     <div className={classes.root}>
       <Grid container direction="row" justify="center" alignItems="center">
@@ -65,6 +67,7 @@ function CustomerForm() {
               submitForm,
               isSubmitting,
               handleChange,
+              resetForm,
               touched,
               errors,
               values,
@@ -79,7 +82,6 @@ function CustomerForm() {
                     onChange={handleChange}
                     style={{ margin: 8 }}
                     placeholder="Name"
-                    fullWidth
                     margin="normal"
                     InputLabelProps={{
                       shrink: true,
@@ -96,8 +98,6 @@ function CustomerForm() {
                       errors.name && touched.name ? errors.name : null
                     }
                   />
-                </Grid>
-                <Grid item xs={12}>
                   <TextField
                     id="outlined-full-width"
                     name="email"
@@ -106,7 +106,6 @@ function CustomerForm() {
                     onChange={handleChange}
                     style={{ margin: 8 }}
                     placeholder="E-Mail"
-                    fullWidth
                     margin="normal"
                     InputLabelProps={{
                       shrink: true,
@@ -123,8 +122,6 @@ function CustomerForm() {
                       errors.email && touched.email ? errors.email : null
                     }
                   />
-                </Grid>
-                <Grid item xs={12}>
                   <TextField
                     id="outlined-full-width"
                     label="Mobile"
@@ -134,7 +131,6 @@ function CustomerForm() {
                     style={{ margin: 8 }}
                     type="number"
                     placeholder="Mobile"
-                    fullWidth
                     margin="normal"
                     InputLabelProps={{
                       shrink: true,
@@ -151,8 +147,6 @@ function CustomerForm() {
                       errors.mobile && touched.mobile ? errors.mobile : null
                     }
                   />
-                </Grid>
-                <Grid item xs={12}>
                   <TextField
                     id="outlined-full-width"
                     label="Address"
@@ -161,7 +155,6 @@ function CustomerForm() {
                     onChange={handleChange}
                     style={{ margin: 8 }}
                     placeholder="Address"
-                    fullWidth
                     margin="normal"
                     InputLabelProps={{
                       shrink: true,
@@ -179,22 +172,28 @@ function CustomerForm() {
                     }
                   />
                 </Grid>
-                {isSubmitting && <LinearProgress />}
-
                 <Grid item xs={12}>
+                  {isSubmitting && <LinearProgress />}
                   <Button
                     variant="contained"
                     color="primary"
-                    fullWidth
                     disabled={isSubmitting}
                     onClick={submitForm}
                   >
-                    Create
+                    Save
+                  </Button>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    onClick={resetForm}
+                  >
+                    Reset
                   </Button>
                 </Grid>
               </Form>
             )}
           </Formik>
+          {customerdata.error}
         </Paper>
       </Grid>
     </div>

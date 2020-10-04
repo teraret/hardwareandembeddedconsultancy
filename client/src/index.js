@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import AppNav from "./AppNav";
 import App from "./App";
@@ -29,9 +29,6 @@ function Index() {
         </Route>
         <Route exact path="/customer">
           <Customer />
-        </Route>
-        <Route exact path="/customer/create">
-          <CustomerForm />
         </Route>
       </Switch>
       <Footer key={3} />

@@ -1,16 +1,14 @@
 import {
-  FETCH_CUSTOMER_REQUEST,
+  FETCH_CUSTOMERS_REQUEST,
   FETCH_CUSTOMERS_SUCCESS,
   FETCH_CUSTOMERS_FAILURE,
-  FETCH_CUSTOMER_SUCCESS,
-  FETCH_CUSTOMER_FAILURE,
 } from "./customerType";
 import Axios from "axios";
 import { SERVER_URL } from "./../../config";
 
-const fetchCustomerRequest = () => {
+const fetchCustomersRequest = () => {
   return {
-    type: FETCH_CUSTOMER_REQUEST,
+    type: FETCH_CUSTOMERS_REQUEST,
   };
 };
 
@@ -35,27 +33,13 @@ const fetchCustomerFailure = (error) => {
   };
 };
 
-const showCustomerSuccess = (customer) => {
-  return {
-    type: FETCH_CUSTOMER_SUCCESS,
-    payload: customer,
-  };
-};
-const showCustomerFailure = (error) => {
-  return {
-    type: FETCH_CUSTOMER_FAILURE,
-    payload: error,
-  };
-};
-
 export const createCustomer = (value) => {
   return (dispatch) => {
-    dispatch(fetchCustomerRequest);
+    dispatch(fetchCustomersRequest);
     Axios.post(SERVER_URL + "/customer", value)
       .then((response) => {
         console.log(response);
         console.log(response.data);
-        dispatch(showCustomerSuccess(response.data));
       })
       .catch((error) => {
         console.error("The Error Message is " + error.response.data.total);
@@ -69,42 +53,14 @@ export const createCustomer = (value) => {
             errorValue += error.response.data._embedded.errors[i].message;
           }
         }
-        dispatch(showCustomerFailure(errorValue));
+        dispatch(fetchCustomerFailure(errorValue));
       });
-  };
-};
-
-export const showCustomer = (id) => {
-  return (dispatch) => {
-    dispatch(fetchCustomerRequest);
-    Axios.get(SERVER_URL + "/customer/" + id).then((response) => {
-      console.log(response);
-      console.log(response.data);
-      dispatch(showCustomerSuccess(response.data));
-    });
-  };
-};
-
-export const editCustomer = (id, value) => {
-  return (dispatch) => {
-    dispatch(fetchCustomerRequest);
-    Axios.put(SERVER_URL + "/customer/" + id, value).then((response) => {
-      console.log(response);
-      console.log(response.data);
-      dispatch(showCustomerSuccess(response.data));
-    });
-  };
-};
-
-export const deleteCustomer = (id) => {
-  return (dispatch) => {
-    Axios.delete(SERVER_URL + "/customer/" + id);
   };
 };
 
 export const fetchCustomer = (authorization, sort, order, max, offset) => {
   return (dispatch) => {
-    dispatch(fetchCustomerRequest);
+    dispatch(fetchCustomersRequest);
     Axios.get(
       SERVER_URL +
         "/customer?max=" +

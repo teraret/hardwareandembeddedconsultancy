@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { Row } from "reactstrap";
-import background from "./images/pexels-valentine-tanasovich-2588757.jpg";
-// import { CLIENT_VERSION, REACT_VERSION, SERVER_URL } from "./config";
 import "whatwg-fetch";
 
 class App extends Component {
@@ -16,7 +14,11 @@ class App extends Component {
   render() {
     return [
       <div className="grails-logo-container" key={1}>
-        <img className="grails-logo" src={background} alt="Grails" />
+        <img
+          className="grails-logo"
+          src="https://source.unsplash.com/1600x900/?digital"
+          alt="Grails"
+        />
       </div>,
 
       <Row key={2}>

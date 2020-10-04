@@ -13,10 +13,9 @@ import EditIcon from "@material-ui/icons/Edit";
 import IconButton from "@material-ui/core/IconButton";
 import TableContainer from "@material-ui/core/TableContainer";
 import TablePagination from "@material-ui/core/TablePagination";
-
 import Paper from "@material-ui/core/Paper";
-import { Link } from "react-router-dom";
 import { LinearProgress } from "@material-ui/core";
+import CustomerForm from "./CustomerForm";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -84,12 +83,6 @@ function Customer() {
     );
   }, []);
 
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = (e) => {
-    setOpen(true);
-  };
-
   const handleChangePage = (event, newPage) => {
     dispatch(
       fetchCustomer(
@@ -129,7 +122,7 @@ function Customer() {
   ) : (
     <div>
       <Grid item sm={12} md={12} className={classes.content}>
-        {/* Page Number {page} */}
+        <CustomerForm />
         <TablePagination
           rowsPerPageOptions={[10, 25]}
           component="div"
@@ -277,23 +270,14 @@ function Customer() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {customerdata.customer.map((customer) => (
+              {customerdata.customers.map((customer) => (
                 <StyledTableRow key={customer.id}>
                   <StyledTableCell component="th" scope="row">
                     {customer.id}
                   </StyledTableCell>
                   <StyledTableCell component="th" scope="row">
-                    <Link
-                      to={
-                        "/addressbook/customer/showcustomerdetail/" +
-                        customer.id
-                      }
-                    >
-                      {" "}
-                      {customer.name}{" "}
-                    </Link>
+                    {customer.name}
                   </StyledTableCell>
-
                   <StyledTableCell component="th" scope="row">
                     {customer.email}
                   </StyledTableCell>
@@ -309,7 +293,6 @@ function Customer() {
                   <StyledTableCell component="th" scope="row">
                     {customer.lastUpdated}
                   </StyledTableCell>
-
                   <StyledTableCell component="th" scope="row">
                     <IconButton color="secondary" aria-label="Edit customer">
                       <EditIcon />
