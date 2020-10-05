@@ -1,8 +1,9 @@
 import {
-    FETCH_CUSTOMER_REQUEST,
-    FETCH_CUSTOMER_SUCCESS,
-    FETCH_CUSTOMER_FAILURE,
-  } from "./customerCreateType";
+  FETCH_CUSTOMER_REQUEST,
+  FETCH_CUSTOMER_SUCCESS,
+  FETCH_CUSTOMER_FAILURE,
+  FETCH_CUSTOMER_RESET,
+} from "./customerCreateType";
 
 import Axios from "axios";
 import { SERVER_URL } from "./../../config";
@@ -23,6 +24,11 @@ const showCustomerFailure = (error) => {
   return {
     type: FETCH_CUSTOMER_FAILURE,
     payload: error,
+  };
+};
+export const fetchCustomerReset = () => {
+  return {
+    type: FETCH_CUSTOMER_RESET,
   };
 };
 

@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import AppNav from "./AppNav";
 import App from "./App";
 import Customer from "./page/customer/Customer";
-import CustomerForm from "./page/customer/CustomerForm";
 import "bootstrap/dist/css/bootstrap.css";
 import "./css/App.css";
 import "./css/grails.css";

@@ -1,8 +1,9 @@
 import {
-    FETCH_CUSTOMER_REQUEST,
-    FETCH_CUSTOMER_SUCCESS,
-    FETCH_CUSTOMER_FAILURE,
-  } from "./customerCreateType";
+  FETCH_CUSTOMER_REQUEST,
+  FETCH_CUSTOMER_SUCCESS,
+  FETCH_CUSTOMER_FAILURE,
+  FETCH_CUSTOMER_RESET,
+} from "./customerCreateType";
 
 const initialState = {
   loading: false,
@@ -21,6 +22,12 @@ const customerReducer = (state = initialState, action) => {
       return {
         loading: false,
         show: action.payload,
+      };
+    case FETCH_CUSTOMER_RESET:
+      return {
+        loading: false,
+        show: [],
+        error: "",
       };
     case FETCH_CUSTOMER_FAILURE:
       return {

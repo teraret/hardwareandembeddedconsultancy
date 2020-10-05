@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { Button, LinearProgress } from "@material-ui/core";
@@ -13,7 +13,10 @@ import { Formik, Form } from "formik";
 import { createCustomer } from "./../../redux/index";
 import { useSelector, useDispatch } from "react-redux";
 import * as yup from "yup";
-
+import Alert from "@material-ui/lab/Alert";
+import IconButton from "@material-ui/core/IconButton";
+import Collapse from "@material-ui/core/Collapse";
+import CloseIcon from "@material-ui/icons/Close";
 let customerCreateSchema = yup.object().shape({
   name: yup.string().required("This field is required."),
   email: yup.string().email().required("This field is required."),
@@ -40,11 +43,17 @@ function CustomerForm(props) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const customerdata = useSelector((state) => state.customerCreate);
+  const [result, setResult] = React.useState(false);
   const initialValues = {
     name: "",
     email: "",
     mobile: "",
     address: "",
+  };
+
+  const done = () => {
+    setResult(false);
+    props.refresh();
   };
 
   return (
@@ -58,6 +67,7 @@ function CustomerForm(props) {
               setTimeout(() => {
                 dispatch(createCustomer(values));
                 setSubmitting(false);
+                setResult(true);
                 resetForm(initialValues);
                 console.log(values);
               }, 2000);
@@ -194,11 +204,65 @@ function CustomerForm(props) {
               </Form>
             )}
           </Formik>
-          {customerdata.error}
-          {/* {customerdata.show.id}
-          {customerdata.show.name}
-          {customerdata.show.email}
-          {customerdata.show.address} */}
+
+          {customerdata.error ? (
+            <Collapse in={result}>
+              <Alert severity="error">
+                <Grid
+                  container
+                  direction="row"
+                  justify="center"
+                  alignItems="center"
+                >
+                  {customerdata.error} <Button onClick={done}>ok</Button>
+                </Grid>
+              </Alert>
+            </Collapse>
+          ) : null}
+
+          {customerdata.show ? (
+            <Collapse in={result}>
+              <Alert>
+                <Grid
+                  container
+                  direction="row"
+                  justify="center"
+                  alignItems="center"
+                >
+                  {customerdata.show.id ? (
+                    <Grid item xs={12}>
+                      Id {customerdata.show.id} Created
+                    </Grid>
+                  ) : null}
+                  {customerdata.show.name ? (
+                    <Grid item xs={12}>
+                      Name:{customerdata.show.name}
+                    </Grid>
+                  ) : null}
+                  {customerdata.show.email ? (
+                    <Grid item xs={12}>
+                      E-Mail:{customerdata.show.email}
+                    </Grid>
+                  ) : null}
+                  {customerdata.show.mobile ? (
+                    <Grid item xs={12}>
+                      Mobile:{customerdata.show.mobile}
+                    </Grid>
+                  ) : null}
+                  {customerdata.show.address ? (
+                    <Grid item xs={12}>
+                      Address:{customerdata.show.address}
+                    </Grid>
+                  ) : null}
+                  {customerdata.show.id ? (
+                    <Grid item xs={12}>
+                      <Button onClick={done}>ok</Button>
+                    </Grid>
+                  ) : null}
+                </Grid>
+              </Alert>
+            </Collapse>
+          ) : null}
         </Paper>
       </Grid>
     </div>
