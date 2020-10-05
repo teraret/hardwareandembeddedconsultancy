@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import { Button, LinearProgress } from "@material-ui/core";
+import { Button, ButtonGroup, LinearProgress } from "@material-ui/core";
+
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -14,9 +15,7 @@ import { createCustomer } from "./../../redux/index";
 import { useSelector, useDispatch } from "react-redux";
 import * as yup from "yup";
 import Alert from "@material-ui/lab/Alert";
-import IconButton from "@material-ui/core/IconButton";
 import Collapse from "@material-ui/core/Collapse";
-import CloseIcon from "@material-ui/icons/Close";
 let customerCreateSchema = yup.object().shape({
   name: yup.string().required("This field is required."),
   email: yup.string().email().required("This field is required."),
@@ -185,21 +184,24 @@ function CustomerForm(props) {
                 </Grid>
                 <Grid item xs={12}>
                   {isSubmitting && <LinearProgress />}
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    disabled={isSubmitting}
-                    onClick={submitForm}
-                  >
-                    Save
-                  </Button>
-                  <Button
-                    variant="contained"
-                    color="secondary"
-                    onClick={resetForm}
-                  >
-                    Reset
-                  </Button>
+                  <ButtonGroup>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      disabled={isSubmitting}
+                      onClick={submitForm}
+                    >
+                      Save
+                    </Button>
+                    <Button variant="contained">Search</Button>
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      onClick={resetForm}
+                    >
+                      Reset
+                    </Button>
+                  </ButtonGroup>
                 </Grid>
               </Form>
             )}
