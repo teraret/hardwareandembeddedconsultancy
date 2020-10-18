@@ -4,10 +4,11 @@ package crm
 import grails.rest.*
 import grails.converters.*
 
-class CustomerController extends RestfulController {
+class CompanyController extends RestfulController {
     static responseFormats = ['json', 'xml']
-    CustomerController() {
-        super(Customer)
+    CompanyController() {
+        super(Company)
+
     }
 
     @Override
@@ -17,10 +18,10 @@ class CustomerController extends RestfulController {
         Long pagecount = Math.ceil(countResources()/params.max  as Long) ?:0
 
         return [
-                customerList : listAllResources(params),
-                customerCount: countResources(),
-                customerPage:currentpage,
-                customerPageCount:pagecount,
+                companyList : listAllResources(params),
+                companyCount: countResources(),
+                companyPage:currentpage,
+                companyPageCount:pagecount,
                 max         : params.max ,
                 offset      : params.int("offset") ?: 0,
                 sort        : params.sort,
@@ -32,4 +33,5 @@ class CustomerController extends RestfulController {
     boolean getReadOnly() {
         return true
     }
+
 }

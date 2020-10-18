@@ -1,17 +1,18 @@
 import React from "react";
 import {
   Collapse,
-  DropdownItem,
   DropdownMenu,
   DropdownToggle,
   Nav,
   Navbar,
   NavbarBrand,
   NavbarToggler,
-  NavLink,
   UncontrolledDropdown,
 } from "reactstrap";
+
+import NavDropdownItem from "./component/NavDropdownItem";
 import Logo from "./images/hadwareandembeddedconsultancy.svg";
+
 
 const AppNav = ({ collapse, toggle }) => {
   return (
@@ -30,12 +31,10 @@ const AppNav = ({ collapse, toggle }) => {
         <Nav className="ml-auto nav" navbar>
           <UncontrolledDropdown nav inNavbar>
             <DropdownToggle caret nav>
-              List
+              POS
             </DropdownToggle>
             <DropdownMenu right tag="ul">
-              <DropdownItem tag="li">
-                <NavLink href="/customer">Customer</NavLink>
-              </DropdownItem>
+              <NavDropdownItem href="/customer">Customer</NavDropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
         </Nav>

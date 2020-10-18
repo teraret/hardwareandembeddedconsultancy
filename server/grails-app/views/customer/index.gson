@@ -1,16 +1,24 @@
 import crm.Customer
 
 model {
-	Iterable<Customer> customerList
-	Long customerCount
-	Long customerPage
-	Long customerPageCount
+    Iterable<Customer> customerList
+    Integer customerCount
+    Long customerPage
+    Long customerPageCount
+    Integer max
+    Integer offset
+    String sort
+    String order
 }
 
-json{
-customer tmpl.customer(customerList ?: [])
-count customerCount
-page customerPage
-totalpages customerPageCount
+json {
+    hal.paginate(Customer, customerCount, offset, max, sort, order)
+    customers tmpl.customer(customerList ?: [])
+    max max
+    count customerCount
+    page customerPage
+    totalpages customerPageCount
+    offset offset
+    sort sort
+    order order
 }
-

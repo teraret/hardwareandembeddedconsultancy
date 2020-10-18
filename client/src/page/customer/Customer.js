@@ -10,6 +10,8 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import TableSortLabel from "@material-ui/core/TableSortLabel";
 import EditIcon from "@material-ui/icons/Edit";
+import ReceiptIcon from "@material-ui/icons/Receipt";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import IconButton from "@material-ui/core/IconButton";
 import TableContainer from "@material-ui/core/TableContainer";
 import TablePagination from "@material-ui/core/TablePagination";
@@ -72,6 +74,7 @@ const StyledTableRow = withStyles((theme) => ({
 function Customer() {
   const classes = useStyles();
   const customerdata = useSelector((state) => state.customer);
+
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(customerdata.max);
 
@@ -128,7 +131,8 @@ function Customer() {
       <Grid item sm={12} md={12} className={classes.content}>
         <CustomerForm refresh={refresh} />
         <TablePagination
-          rowsPerPageOptions={[10, 25]}
+
+          rowsPerPageOptions={[10, 25, parseInt(customerdata.count)]}
           component="div"
           count={customerdata.count}
           rowsPerPage={rowsPerPage}
@@ -269,7 +273,8 @@ function Customer() {
                     Last Updated
                   </TableSortLabel>
                 </StyledTableCell>
-
+                <StyledTableCell> Cart </StyledTableCell>
+                <StyledTableCell> Invoices </StyledTableCell>
                 <StyledTableCell> Edit </StyledTableCell>
               </TableRow>
             </TableHead>
@@ -299,6 +304,16 @@ function Customer() {
                   </StyledTableCell>
                   <StyledTableCell component="th" scope="row">
                     <IconButton color="secondary" aria-label="Edit customer">
+                      <ShoppingCartIcon />
+                    </IconButton>
+                  </StyledTableCell>
+                  <StyledTableCell component="th" scope="row">
+                    <IconButton color="secondary" aria-label="Edit customer">
+                      <ReceiptIcon />
+                    </IconButton>
+                  </StyledTableCell>
+                  <StyledTableCell component="th" scope="row">
+                    <IconButton color="secondary" aria-label="Edit customer">
                       <EditIcon />
                     </IconButton>
                   </StyledTableCell>
@@ -308,7 +323,7 @@ function Customer() {
           </Table>
         </TableContainer>
         <TablePagination
-          rowsPerPageOptions={[10, 25]}
+          rowsPerPageOptions={[10, 25, parseInt(customerdata.count)]}
           component="div"
           count={customerdata.count}
           rowsPerPage={rowsPerPage}

@@ -1,7 +1,17 @@
 import crm.Customer
 
 model {
-	Customer customer
+    Customer customer
 }
+json {
+    hal.links(customer)
+    id  customer.id
+    name customer.name
+    company customer.company.id
+    email customer.email
+    mobile customer.mobile
+    address customer.address
+    dateCreated customer.dateCreated
+    lastUpdated customer.lastUpdated
 
-json g.render(customer, [resolveTemplate: false])
+}

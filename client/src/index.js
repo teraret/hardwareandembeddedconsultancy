@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import AppNav from "./AppNav";
 import App from "./App";
 import Customer from "./page/customer/Customer";
+import CustomerSearch from "./page/customer/CustomerSearch";
 import "bootstrap/dist/css/bootstrap.css";
 import "./css/App.css";
 import "./css/grails.css";
@@ -28,6 +29,9 @@ function Index() {
         </Route>
         <Route exact path="/customer">
           <Customer />
+        </Route>
+        <Route exact path="/customer/search">
+          <CustomerSearch />
         </Route>
       </Switch>
       <Footer key={3} />
