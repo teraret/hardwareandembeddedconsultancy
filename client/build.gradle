@@ -3,8 +3,8 @@ plugins {
 }
 
 node {
-    version = '10.15.0' // https://nodejs.org/en/
-    yarnVersion = '1.13.0' // https://yarnpkg.com/en/
+    version = '14.15.1' // https://nodejs.org/en/
+    yarnVersion = '1.22.5' // https://yarnpkg.com/en/
     download = true
 }
 
@@ -16,7 +16,7 @@ task bootRun(dependsOn: 'start') {
 task start(type: YarnTask, dependsOn: 'yarn') {
     group = 'application'
     description = 'Run the client app'
-    args = ['run', 'start']
+    args = [ 'start']
 }
 
 task build(type: YarnTask, dependsOn: 'yarn') {

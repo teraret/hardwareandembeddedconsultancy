@@ -22,7 +22,7 @@ const AppNav = ({ collapse, toggle }) => {
       expand="lg"
       className="navbar-static-top"
     >
-      <NavbarBrand href="/">
+      <NavbarBrand href="/#/">
         <img src={Logo} alt="Hardware and Embedded Consultancy" width="240" />
       </NavbarBrand>
       <NavbarToggler onClick={toggle} />
@@ -34,7 +34,7 @@ const AppNav = ({ collapse, toggle }) => {
               POS
             </DropdownToggle>
             <DropdownMenu right tag="ul">
-              <NavDropdownItem href="/customer">Customer</NavDropdownItem>
+              <NavDropdownItem href="/#/customer">Customer</NavDropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
         </Nav>

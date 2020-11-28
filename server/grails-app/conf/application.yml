@@ -36,6 +36,11 @@ management:
 
 ---
 grails:
+    resources:
+        pattern: /**
+
+---
+grails:
     mime:
         disable:
             accept:

@@ -1,6 +1,10 @@
 import pjson from "./../package.json";
 
-export const SERVER_URL = "http://localhost:8080";
-export const CUSTOMER_URL = SERVER_URL + "/customer";
+const prod = process.env.NODE_ENV === 'production';  
+
+console.log(`Loading ${process.env.NODE_ENV} config...`);
+
+export const SERVER_URL = prod ? '' : 'http://localhost:8080';
+export const CUSTOMER_URL = SERVER_URL + "/api/customer";
 export const CLIENT_VERSION = pjson.version;
 export const REACT_VERSION = pjson.dependencies.react;

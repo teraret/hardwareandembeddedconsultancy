@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/static/css/main.6bd785b3.chunk.css",
+    "main.js": "/static/js/main.6ff7099a.chunk.js",
+    "main.js.map": "/static/js/main.6ff7099a.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.8eac158a.js",
+    "runtime-main.js.map": "/static/js/runtime-main.8eac158a.js.map",
+    "static/css/2.9720967d.chunk.css": "/static/css/2.9720967d.chunk.css",
+    "static/js/2.e1b7ada9.chunk.js": "/static/js/2.e1b7ada9.chunk.js",
+    "static/js/2.e1b7ada9.chunk.js.map": "/static/js/2.e1b7ada9.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.221b72936566ef864b3cefa460033724.js": "/precache-manifest.221b72936566ef864b3cefa460033724.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.9720967d.chunk.css.map": "/static/css/2.9720967d.chunk.css.map",
+    "static/css/main.6bd785b3.chunk.css.map": "/static/css/main.6bd785b3.chunk.css.map",
+    "static/media/buy.svg": "/static/media/buy.017e8bd6.svg",
+    "static/media/grails.css": "/static/media/grails-cupsonly-logo-white.b651640f.svg",
+    "static/media/hadwareandembeddedconsultancy.svg": "/static/media/hadwareandembeddedconsultancy.9b261978.svg",
+    "static/media/repair.svg": "/static/media/repair.1094fa34.svg",
+    "static/media/sell.svg": "/static/media/sell.759a8ebe.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8eac158a.js",
+    "static/css/2.9720967d.chunk.css",
+    "static/js/2.e1b7ada9.chunk.js",
+    "static/css/main.6bd785b3.chunk.css",
+    "static/js/main.6ff7099a.chunk.js"
+  ]
+}
